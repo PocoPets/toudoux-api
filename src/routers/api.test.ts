@@ -1,7 +1,7 @@
 import { testClient } from 'hono/testing';
 import { describe, it } from '@std/testing/bdd';
 import { expect } from '@std/expect';
-import api from './main.ts';
+import api from './api.ts';
 
 describe('Root endpoint', () => {
   const client = testClient(api);

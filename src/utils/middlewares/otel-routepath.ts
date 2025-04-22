@@ -2,7 +2,7 @@ import { createMiddleware } from 'hono/factory';
 import { trace } from '@opentelemetry/api';
 
 import env from '../env.ts';
-import { logger } from '../logger.ts';
+import logger from '../logger.ts';
 
 // OpenTelemetry middleware adding route paths to spans (https://docs.deno.com/runtime/fundamentals/open_telemetry/)
 export default () =>
