@@ -1,2 +1,9 @@
 .env
 .DS_Store
+
+artillery/*.json
+artillery/*.html
+
+lgtm/grafana
+lgtm/loki
+lgtm/prometheus

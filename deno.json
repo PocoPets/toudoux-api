@@ -1,9 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/denoland/deno/refs/heads/main/cli/schemas/config-file.v1.json",
   "tasks": {
-    "dev": "deno run -A --env-file=.env --watch src/main.ts",
+    "dev": "OTEL_DENO=true deno run -A --env-file=.env --unstable-otel --watch src/main.ts",
     "test": "deno test -A --env-file=test.env",
-    "start": "deno run --allow-net --allow-env src/main.ts",
+    "lgtm": "./lgtm/start.sh",
+    "start": "deno run --allow-net --allow-env --unstable-otel src/main.ts",
     "lint": "deno lint",
     "format": "deno fmt"
   },
@@ -22,6 +23,7 @@
   },
   "imports": {
     "@hono/zod-validator": "npm:@hono/zod-validator@^0.4.3",
+    "@opentelemetry/api": "npm:@opentelemetry/api@^1.9.0",
     "@std/async": "jsr:@std/async@^1.0.12",
     "@std/collections": "jsr:@std/collections@^1.0.10",
     "@std/datetime": "jsr:@std/datetime@^0.225.4",

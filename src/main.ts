@@ -4,10 +4,12 @@ import { compress } from 'hono/compress';
 import { logger } from 'hono/logger';
 import { requestId } from 'hono/request-id';
 
-import env from './env.ts';
+import env from './utils/env.ts';
+import otelRoutePath from './utils/middlewares/otel-routepath.ts';
 import { toudouxRouter } from './routers/index.ts';
 
 const api = new Hono()
+  .use('*', otelRoutePath())
   .use('*', requestId())
   .use('*', logger())
   .use('*', compress())
