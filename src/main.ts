@@ -14,10 +14,12 @@ const api = new Hono()
   .get('/', (c) => c.text('Hello Toudoux !'))
   .route('/', toudouxRouter);
 
-showRoutes(api, {
-  verbose: true,
-  colorize: true,
-});
+if (env.ENVIRONMENT === 'development') {
+  showRoutes(api, {
+    verbose: true,
+    colorize: true,
+  });
+}
 
 Deno.serve({
   port: env.PORT,
