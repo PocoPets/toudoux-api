@@ -1,4 +1,6 @@
 import { showRoutes } from 'hono/dev';
+import { compress } from 'hono/compress';
+import { logger as honoLogger } from 'hono/logger';
 
 import config from './utils/config.ts';
 import api from './routers/api.ts';
@@ -12,7 +14,12 @@ function start() {
     });
   }
 
-  if (config.enableOpenTelemetry === true) {
+  if (config.environment !== 'production') {
+    api.use('*', honoLogger());
+    api.use('*', compress());
+  }
+
+  if (config.enableOpenTelemetry) {
     logger.info('🔭 OpenTelemetry tracing is enabled');
   }
 
