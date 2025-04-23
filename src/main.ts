@@ -1,23 +1,23 @@
 import { showRoutes } from 'hono/dev';
 
-import env from './utils/env.ts';
+import config from './utils/config.ts';
 import api from './routers/api.ts';
 import logger from './utils/logger.ts';
 
 function start() {
-  if (env.ENVIRONMENT === 'development') {
+  if (config.environment === 'development') {
     showRoutes(api, {
       verbose: true,
       colorize: true,
     });
   }
 
-  if (env.OTEL_DENO === true) {
+  if (config.enableOpenTelemetry === true) {
     logger.info('🔭 OpenTelemetry tracing is enabled');
   }
 
   Deno.serve({
-    port: env.PORT,
+    port: config.port,
   }, api.fetch);
 }
 
