@@ -11,6 +11,9 @@ const envSchema = z.object({
     z.literal('test'),
   ]).default('development')
     .describe('Current environment'),
+  DB_FILE_NAME: z.string().describe(
+      'Name of the database SQlite fael'
+  ),
   OTEL_DENO: z.union([
     z.literal('true'),
     z.literal('false'),
@@ -27,6 +30,7 @@ const config = {
   port: env.PORT,
   environment: env.ENVIRONMENT,
   enableOpenTelemetry: env.OTEL_DENO,
+  databaseFileName: env.DB_FILE_NAME,
 };
 
 export default config;
